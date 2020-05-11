@@ -1,0 +1,43 @@
+/node_modules
+*.log
+/haters
+/.build
+/.pnp
+layout.md
+
+# testing
+/coverage
+
+# production
+/build
+/dist
+
+# Temp directory
+.tmp
+.sass-cache
+._*
+.git
+CVS
+.svn
+.hg
+.lock-wscript
+.wafpickle-N
+.*.swp
+
+# misc
+.vscode
+.DS_Store
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+ehthumbs.db
+Icon?
+Thumbs.db
+.no-sublime-package
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
