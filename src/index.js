@@ -1,19 +1,20 @@
-const {ApolloServer} = require('apollo-server')
-const typeDefs = require('./typedefs')
-const resolvers = require('./resolvers')
-const {createToken, getUserFromToken} = require('./auth')
-const db = require('./db')
+import { ApolloServer } from 'apollo-server'
+
+import typeDefs from './typeDefs'
+import resolvers from './resolvers'
+import { createToken, getUserFromToken } from './auth'
+import db from './db'
 
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  context({req}) {
+  context({ req }) {
     const token = req.headers.authorization
     const user = getUserFromToken(token)
-    return {...db, user, createToken}
-  }
+    return { ...db, user, createToken }
+  },
 })
 
-server.listen(4000).then(({url}) => {
+server.listen(4000).then(({ url }) => {
   console.log(`🚀 Server ready at ${url}`)
 })

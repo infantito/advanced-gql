@@ -1,5 +1,6 @@
-const jwt = require('jsonwebtoken')
-const {models} = require('./db')
+import jwt from 'jsonwebtoken'
+import { models } from './db'
+
 const secret = 'catpack'
 
 /**
@@ -7,7 +8,7 @@ const secret = 'catpack'
  * using user.id and user.role
  * @param {Object} user the user to create a jwt for
  */
-const createToken = ({id, role}) => jwt.sign({id, role }, secret)
+const createToken = ({ id, role }) => jwt.sign({ id, role }, secret)
 
 /**
  * will attemp to verify a jwt and find a user in the
@@ -18,11 +19,10 @@ const createToken = ({id, role}) => jwt.sign({id, role }, secret)
 const getUserFromToken = token => {
   try {
     const user = jwt.verify(token, secret)
-    return models.User.findOne({id: user.id})
-  } catch (e) {
+    return models.User.findOne({ id: user.id })
+  } catch {
     return null
   }
-
 }
 
 /**
@@ -30,9 +30,7 @@ const getUserFromToken = token => {
  * continues to the next resolver if true
  * @param {Function} next next resolver function ro run
  */
-const authenticated = next => (root, args, context, info) => {
-  
-}
+const authenticated = next => (root, args, context, info) => {}
 
 /**
  * checks if the user on the context has the specified role.
@@ -40,13 +38,11 @@ const authenticated = next => (root, args, context, info) => {
  * @param {String} role enum role to check for
  * @param {Function} next next resolver function to run
  */
-const authorized = (role, next) => (root, args, context, info) => {
-  
-}
+const authorized = (role, next) => (root, args, context, info) => {}
 
-module.exports = {
+export default {
   getUserFromToken,
   authenticated,
   authorized,
-  createToken
+  createToken,
 }

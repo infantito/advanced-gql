@@ -5,8 +5,9 @@
   "author": "Scott Moss <willscottmoss@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "server": "babel-node server --presets @babel/preset-env",
-    "start": "node src/index.js",
+    "server": "babel-node src/index.js --presets @babel/preset-env",
+    "start": "nodemon --exec babel-node src/index.js --presets @babel/preset-env",
+    "debug": "nodemon --exec babel-node --inspect src/index.js --presets @babel/preset-env",
     "dev": "nodemon src/index.js --ignore 'src/db/db.json'",
     "test": "jest tests"
   },
@@ -18,7 +19,7 @@
     "graphql-tag": "~2.10.3",
     "jest": "^24.9.0",
     "mdx-deck": "^3.0.13",
-    "nodemon": "^1.19.4"
+    "nodemon": "~2.0.3"
   },
   "dependencies": {
     "@mdx-deck/themes": "^3.0.8",
@@ -27,5 +28,13 @@
     "jsonwebtoken": "^8.5.1",
     "lowdb": "^1.0.0",
     "nanoid": "^2.1.3"
+  },
+  "nodemonConfig": {
+    "verbose": true,
+    "ignore": [
+      "node_modules/*",
+      "client/*",
+      "dist/*"
+    ]
   }
 }

@@ -1,6 +1,6 @@
-const gql = require('graphql-tag')
+import gql from 'graphql-tag'
 
-module.exports = gql`
+export default gql`
   enum Theme {
     DARK
     LIGHT
@@ -100,5 +100,4 @@ module.exports = gql`
     signup(input: SignupInput!): AuthUser!
     signin(input: SigninInput!): AuthUser!
   }
-
 `
