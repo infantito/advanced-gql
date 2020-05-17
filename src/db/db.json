@@ -8,6 +8,42 @@
       "avatar": "http",
       "createdAt": 1571213104370,
       "id": "Z2hlvDmLOSRZGebC_Z_aA"
+    },
+    {
+      "email": "dinfante@gmail.com",
+      "password": "12345678f",
+      "role": "ADMIN",
+      "verified": false,
+      "avatar": "http",
+      "createdAt": 1589738008196,
+      "id": "Wj7CfxFLM4QM8eCKmBfYb"
+    },
+    {
+      "email": "oshea@gmail.com",
+      "password": "12345678f",
+      "role": "MEMBER",
+      "verified": false,
+      "avatar": "http",
+      "createdAt": 1589739331285,
+      "id": "YfTgystiHE6TKT7b7kYJT"
+    },
+    {
+      "email": "ainfante@gmail.com",
+      "password": "12345678f",
+      "role": "ADMIN",
+      "verified": false,
+      "avatar": "http",
+      "createdAt": 1589739829652,
+      "id": "T5aUAXAqy41YgDgt6nX6B"
+    },
+    {
+      "email": "hello@gmail.com",
+      "password": "12345678f",
+      "role": "MEMBER",
+      "verified": false,
+      "avatar": "http",
+      "createdAt": 1589739881976,
+      "id": "QpgrplajSiTo6KjP_DiN3"
     }
   ],
   "posts": [],

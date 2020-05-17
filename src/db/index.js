@@ -7,11 +7,10 @@ const db = low(adapter)
 
 db.defaults({ posts: [], users: [], settings: [] })
 
-export default {
-  models: {
-    Settings: createModel(db, 'settings'),
-    Post: createModel(db, 'posts'),
-    User: createModel(db, 'users'),
-  },
-  db,
+const models = {
+  Settings: createModel(db, 'settings'),
+  Post: createModel(db, 'posts'),
+  User: createModel(db, 'users'),
 }
+
+export { db, models }

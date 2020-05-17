@@ -3,7 +3,7 @@ import { ApolloServer } from 'apollo-server'
 import typeDefs from './typeDefs'
 import resolvers from './resolvers'
 import { createToken, getUserFromToken } from './auth'
-import db from './db'
+import * as db from './db'
 
 const server = new ApolloServer({
   typeDefs,

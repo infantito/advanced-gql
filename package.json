@@ -6,8 +6,8 @@
   "license": "MIT",
   "scripts": {
     "server": "babel-node src/index.js --presets @babel/preset-env",
-    "start": "nodemon --exec babel-node src/index.js --presets @babel/preset-env",
-    "debug": "nodemon --exec babel-node --inspect src/index.js --presets @babel/preset-env",
+    "start": "nodemon --exec babel-node --inspect src/index.js --presets @babel/preset-env",
+    "debug": "nodemon --exec babel-node --inspect-brk src/index.js --presets @babel/preset-env",
     "dev": "nodemon src/index.js --ignore 'src/db/db.json'",
     "test": "jest tests"
   },
@@ -34,6 +34,7 @@
     "ignore": [
       "node_modules/*",
       "client/*",
+      "src/db/*",
       "dist/*"
     ]
   }
