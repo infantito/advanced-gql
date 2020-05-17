@@ -1,11 +1,13 @@
+import { PubSub } from 'apollo-server'
 import { authenticated, authorized } from './auth'
 
 const NEW_POST = 'NEW_POST'
+const pubSub = new PubSub()
 
 /**
  * Anything Query / Mutation resolver
  * using a user for a DB query
- * requires user authenication
+ * requires user authentication
  */
 export default {
   Query: {
@@ -35,7 +37,7 @@ export default {
 
     createPost: authenticated((_, { input }, { user, models }) => {
       const post = models.Post.createOne({ ...input, author: user.id })
-      pubsub.publish(NEW_POST, { newPost: post })
+      pubSub.publish(NEW_POST, { newPost: post })
       return post
     }),
 
@@ -99,6 +101,11 @@ export default {
   Post: {
     author(post, _, { models }) {
       return models.User.findOne({ id: post.author })
+    },
+  },
+  Subscription: {
+    newPost: {
+      subscribe: () => pubSub.asyncIterator(NEW_POST),
     },
   },
 }

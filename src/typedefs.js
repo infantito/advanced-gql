@@ -100,4 +100,8 @@ export default gql`
     signup(input: SignupInput!): AuthUser!
     signin(input: SigninInput!): AuthUser!
   }
+
+  type Subscription {
+    newPost: Post!
+  }
 `

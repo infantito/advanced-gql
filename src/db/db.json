@@ -44,8 +44,36 @@
       "avatar": "http",
       "createdAt": 1589739881976,
       "id": "QpgrplajSiTo6KjP_DiN3"
+    },
+    {
+      "email": "subscriber@gmail.com",
+      "password": "12345678f",
+      "role": "ADMIN",
+      "verified": false,
+      "avatar": "http",
+      "createdAt": 1589750256922,
+      "id": "0MqMGmGe8kGlu9jb-sdUx"
     }
   ],
-  "posts": [],
+  "posts": [
+    {
+      "message": "He there",
+      "author": "QpgrplajSiTo6KjP_DiN3",
+      "createdAt": 1589750370090,
+      "id": "4Q0Et3C6iZH3D_zfMHhk6"
+    },
+    {
+      "message": "He there",
+      "author": "QpgrplajSiTo6KjP_DiN3",
+      "createdAt": 1589750381550,
+      "id": "zzJIlH3FYdsP9bbtF9ZZi"
+    },
+    {
+      "message": "Hey bobo",
+      "author": "QpgrplajSiTo6KjP_DiN3",
+      "createdAt": 1589750393124,
+      "id": "3H0Pn2wclWpxrhLkku63w"
+    }
+  ],
   "settings": []
 }
