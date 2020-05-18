@@ -19,6 +19,17 @@ const server = new ApolloServer({
     const user = getUserFromToken(token)
     return { ...context, user, createToken }
   },
+  formatError(error) {
+    return {
+      message: error.message,
+      locations: error.locations,
+      path: error.path,
+      source: {
+        code: error.originalError?.code,
+        state: error.originalError?.state,
+      },
+    }
+  },
   subscriptions: {
     onConnect(params) {
       const token = params.authorization

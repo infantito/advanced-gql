@@ -1,4 +1,4 @@
-import { PubSub } from 'apollo-server'
+import { PubSub, UserInputError } from 'apollo-server'
 import { authenticated, authorized } from './auth'
 
 const NEW_POST = 'NEW_POST'
@@ -60,7 +60,7 @@ export default {
       const existing = models.User.findOne({ email: input.email })
 
       if (existing) {
-        throw new Error('nope')
+        throw new UserInputError('nope')
       }
       const user = models.User.createOne({
         ...input,
@@ -74,7 +74,7 @@ export default {
       const user = models.User.findOne(input)
 
       if (!user) {
-        throw new Error('nope')
+        throw new UserInputError('nope')
       }
 
       const token = createToken(user)
@@ -84,7 +84,7 @@ export default {
   User: {
     posts(root, _, { user, models }) {
       if (root.id !== user.id) {
-        throw new Error('nope')
+        throw new UserInputError('nope')
       }
 
       return models.Post.findMany({ author: root.id })

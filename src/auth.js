@@ -1,3 +1,4 @@
+import { AuthenticationError } from 'apollo-server'
 import jwt from 'jsonwebtoken'
 import { models } from './db'
 
@@ -32,7 +33,7 @@ export const getUserFromToken = token => {
  */
 export const authenticated = next => (root, args, context, info) => {
   if (!context.user) {
-    throw new Error('not authorized')
+    throw new AuthenticationError('not authorized')
   }
 
   return next(root, args, context, info)
@@ -46,7 +47,7 @@ export const authenticated = next => (root, args, context, info) => {
  */
 export const authorized = (role, next) => (root, args, context, info) => {
   if (context.user.role !== role) {
-    throw new Error(`Must be a ${role}`)
+    throw new AuthenticationError(`Must be a ${role}`)
   }
 
   return next(root, args, context, info)
