@@ -5,9 +5,9 @@
   "author": "Scott Moss <willscottmoss@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "server": "babel-node src/index.js --presets @babel/preset-env",
-    "start": "nodemon --exec babel-node --inspect src/index.js --presets @babel/preset-env",
-    "debug": "nodemon --exec babel-node --inspect-brk src/index.js --presets @babel/preset-env",
+    "server": "babel-node --config-file ./.babelrc src/index.js",
+    "start": "nodemon --exec babel-node --inspect --config-file ./.babelrc src/index.js",
+    "debug": "nodemon --exec babel-node --inspect-brk --config-file ./.babelrc src/index.js",
     "dev": "nodemon src/index.js --ignore 'src/db/db.json'",
     "test": "jest tests"
   },
@@ -15,19 +15,21 @@
     "@babel/core": "~7.9.6",
     "@babel/node": "~7.8.7",
     "@babel/preset-env": "~7.9.6",
-    "apollo-server-testing": "^2.9.6",
+    "apollo-server-testing": "^2.13.1",
+    "babel-jest": "^26.0.1",
+    "babel-polyfill": "^6.26.0",
     "graphql-tag": "~2.10.3",
-    "jest": "^24.9.0",
+    "jest": "^26.0.1",
     "mdx-deck": "^3.0.13",
     "nodemon": "~2.0.3"
   },
   "dependencies": {
     "@mdx-deck/themes": "^3.0.8",
-    "apollo-server": "^2.9.6",
+    "apollo-server": "^2.13.1",
     "date-fns": "^2.5.0",
     "jsonwebtoken": "^8.5.1",
     "lowdb": "^1.0.0",
-    "nanoid": "^2.1.3"
+    "nanoid": "^3.1.9"
   },
   "nodemonConfig": {
     "verbose": true,

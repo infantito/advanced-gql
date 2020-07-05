@@ -1,7 +1,7 @@
-const {ApolloServer} = require('apollo-server')
-const { createTestClient } = require('apollo-server-testing')
-const typeDefs = require('../src/typedefs')
-const resolvers = require('../src/resolvers')
+import { ApolloServer } from 'apollo-server'
+import { createTestClient } from 'apollo-server-testing'
+import typeDefs from '../src/typeDefs'
+import resolvers from '../src/resolvers'
 
 const createTestServer = ctx => {
   const server = new ApolloServer({
@@ -9,10 +9,10 @@ const createTestServer = ctx => {
     resolvers,
     mockEntireSchema: false,
     mocks: true,
-    context: () => ctx
+    context: () => ctx,
   })
 
   return createTestClient(server)
 }
 
-module.exports = createTestServer
+export default createTestServer
