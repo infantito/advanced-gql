@@ -2,7 +2,11 @@ import { ApolloServer } from 'apollo-server'
 
 import typeDefs from './typeDefs'
 import resolvers from './resolvers'
-import { FormatDateDirective } from './directives'
+import {
+  FormatDateDirective,
+  AuthenticationDirective,
+  AuthorizationDirective,
+} from './directives'
 import { createToken, getUserFromToken } from './auth'
 import * as db from './db'
 
@@ -12,6 +16,8 @@ const server = new ApolloServer({
   schemaDirectives: {
     formatDate: FormatDateDirective,
     dateFormat: FormatDateDirective,
+    authenticated: AuthenticationDirective,
+    authorized: AuthorizationDirective,
   },
   context({ req, connection }) {
     const context = { ...db }

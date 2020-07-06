@@ -1,4 +1,4 @@
-import { SchemaDirectiveVisitor } from 'apollo-server'
+import { SchemaDirectiveVisitor, AuthenticationError } from 'apollo-server'
 import { defaultFieldResolver, GraphQLString } from 'graphql'
 import { formatDate } from './utils'
 
@@ -23,4 +23,33 @@ class FormatDateDirective extends SchemaDirectiveVisitor {
   }
 }
 
-export { FormatDateDirective }
+class AuthenticationDirective extends SchemaDirectiveVisitor {
+  visitFieldDefinition(field) {
+    const resolver = field.resolve || defaultFieldResolver
+
+    field.resolve = async (root, args, ctx, info) => {
+      if (!ctx.user) {
+        throw new AuthenticationError('Authentication is required')
+      }
+
+      return resolver(root, args, ctx, info)
+    }
+  }
+}
+
+class AuthorizationDirective extends SchemaDirectiveVisitor {
+  visitFieldDefinition(field) {
+    const resolver = field.resolve || defaultFieldResolver
+    const { role } = this.args
+
+    field.resolve = async (root, args, ctx, info) => {
+      if (ctx.user.role !== role) {
+        throw new AuthenticationError('wrong role')
+      }
+
+      return resolver(root, args, ctx, info)
+    }
+  }
+}
+
+export { FormatDateDirective, AuthenticationDirective, AuthorizationDirective }

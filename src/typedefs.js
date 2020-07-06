@@ -4,6 +4,9 @@ export default gql`
   directive @formatDate(format: String = "dd MMM yyy") on FIELD_DEFINITION
   directive @dateFormat(format: String = "dd MMM yyy") on FIELD_DEFINITION
 
+  directive @authenticated on FIELD_DEFINITION
+  directive @authorized(role: Role! = ADMIN) on FIELD_DEFINITION
+
   enum Theme {
     DARK
     LIGHT
@@ -88,7 +91,7 @@ export default gql`
   }
 
   type Query {
-    me: User!
+    me: User! @authenticated
     posts: [Post]!
     post(id: ID!): Post!
     userSettings: Settings!
@@ -99,7 +102,7 @@ export default gql`
     updateSettings(input: UpdateSettingsInput!): Settings!
     createPost(input: NewPostInput!): Post!
     updateMe(input: UpdateUserInput!): User
-    invite(input: InviteInput!): Invite!
+    invite(input: InviteInput!): Invite! @authenticated @authorized(role: ADMIN)
     signup(input: SignupInput!): AuthUser!
     signin(input: SigninInput!): AuthUser!
   }

@@ -11,9 +11,14 @@ const pubSub = new PubSub()
  */
 export default {
   Query: {
+    // Before authenticated directive
     me: authenticated((_, __, { user }) => {
       return user
     }),
+    // After authenticated directive
+    me: (_, __, { user }) => {
+      return user
+    },
     posts: authenticated((_, __, { user, models }) => {
       return models.Post.findMany({ author: user.id })
     }),
@@ -45,6 +50,7 @@ export default {
       return models.User.updateOne({ id: user.id }, input)
     }),
     // admin role
+    // Before authenticated and authorized directives
     invite: authenticated(
       authorized('ADMIN', (_, { input }, { user }) => {
         return {
@@ -55,6 +61,15 @@ export default {
         }
       }),
     ),
+    // After authenticated directive
+    invite(_, { input }, { user }) {
+      return {
+        from: user.id,
+        role: input.role,
+        createdAt: Date.now(),
+        email: input.email,
+      }
+    },
 
     signup(_, { input }, { models, createToken }) {
       const existing = models.User.findOne({ email: input.email })
