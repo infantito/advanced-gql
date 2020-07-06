@@ -1,5 +1,5 @@
-import { PubSub, AuthenticationError } from 'apollo-server'
-import { authenticated, authorized } from './auth'
+const { PubSub, AuthenticationError } = require('apollo-server')
+const { authenticated, authorized } = require('./auth')
 
 const NEW_POST = 'NEW_POST'
 const pubSub = new PubSub()
@@ -9,7 +9,7 @@ const pubSub = new PubSub()
  * using a user for a DB query
  * requires user authentication
  */
-export default {
+module.exports = {
   Query: {
     // Before authenticated directive
     me: authenticated((_, __, { user }) => {

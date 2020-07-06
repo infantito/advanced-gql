@@ -1,6 +1,6 @@
-import 'babel-polyfill'
-import gql from 'graphql-tag'
-import createTestServer from './helper'
+require('babel-polyfill')
+const gql = require('graphql-tag')
+const createTestServer = require('./helper')
 
 const FEED = gql`
   {

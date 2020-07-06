@@ -1,6 +1,6 @@
-import gql from 'graphql-tag'
+const gql = require('graphql-tag')
 
-export default gql`
+module.exports = gql`
   directive @formatDate(format: String = "dd MMM yyy") on FIELD_DEFINITION
   directive @dateFormat(format: String = "dd MMM yyy") on FIELD_DEFINITION
 

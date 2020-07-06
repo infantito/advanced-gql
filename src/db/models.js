@@ -1,4 +1,4 @@
-import nano from 'nanoid'
+const nano = require('nanoid')
 
 const createModel = (db, table) => ({
   findOne(filter = {}) {
@@ -47,4 +47,4 @@ const createModel = (db, table) => ({
   },
 })
 
-export default createModel
+module.exports = createModel

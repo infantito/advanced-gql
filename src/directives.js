@@ -1,6 +1,6 @@
-import { SchemaDirectiveVisitor, AuthenticationError } from 'apollo-server'
-import { defaultFieldResolver, GraphQLString } from 'graphql'
-import { formatDate } from './utils'
+const { SchemaDirectiveVisitor, AuthenticationError } = require('apollo-server')
+const { defaultFieldResolver, GraphQLString } = require('graphql')
+const { formatDate } = require('./utils')
 
 // https://github.com/APIs-guru/graphql-lodash
 class FormatDateDirective extends SchemaDirectiveVisitor {
@@ -52,4 +52,8 @@ class AuthorizationDirective extends SchemaDirectiveVisitor {
   }
 }
 
-export { FormatDateDirective, AuthenticationDirective, AuthorizationDirective }
+module.exports = {
+  FormatDateDirective,
+  AuthenticationDirective,
+  AuthorizationDirective,
+}

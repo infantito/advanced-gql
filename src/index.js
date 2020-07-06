@@ -1,14 +1,14 @@
-import { ApolloServer } from 'apollo-server'
+const { ApolloServer } = require('apollo-server')
 
-import typeDefs from './typeDefs'
-import resolvers from './resolvers'
-import {
+const typeDefs = require('./typeDefs')
+const resolvers = require('./resolvers')
+const {
   FormatDateDirective,
   AuthenticationDirective,
   AuthorizationDirective,
-} from './directives'
-import { createToken, getUserFromToken } from './auth'
-import * as db from './db'
+} = require('./directives')
+const { createToken, getUserFromToken } = require('./auth')
+const db = require('./db')
 
 const server = new ApolloServer({
   typeDefs,
@@ -31,14 +31,18 @@ const server = new ApolloServer({
     return { ...context, user, createToken }
   },
   formatError(error) {
+    const { message, locations, path, originalError } = error
+
+    const source = {
+      code: (originalError || {}).code,
+      state: (originalError || {}).state,
+    }
+
     return {
-      message: error.message,
-      locations: error.locations,
-      path: error.path,
-      source: {
-        code: error.originalError?.code,
-        state: error.originalError?.state,
-      },
+      message,
+      locations,
+      path,
+      source,
     }
   },
   subscriptions: {

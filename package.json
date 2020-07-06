@@ -5,10 +5,7 @@
   "author": "Scott Moss <willscottmoss@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "server": "babel-node --config-file ./.babelrc src/index.js",
-    "start": "nodemon --exec babel-node --inspect --config-file ./.babelrc src/index.js",
-    "debug": "nodemon --exec babel-node --inspect-brk --config-file ./.babelrc src/index.js",
-    "dev": "nodemon src/index.js --ignore 'src/db/db.json'",
+    "start": "node src/index.js",
     "test": "jest tests"
   },
   "devDependencies": {

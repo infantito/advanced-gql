@@ -1,6 +1,6 @@
-import low from 'lowdb'
-import FileSync from 'lowdb/adapters/FileSync'
-import createModel from './models'
+const low = require('lowdb')
+const FileSync = require('lowdb/adapters/FileSync')
+const createModel = require('./models')
 
 const adapter = new FileSync('src/db/db.json')
 const db = low(adapter)
@@ -13,4 +13,4 @@ const models = {
   User: createModel(db, 'users'),
 }
 
-export { db, models }
+module.exports = { db, models }

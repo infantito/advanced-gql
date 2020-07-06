@@ -1,6 +1,6 @@
-import { AuthenticationError } from 'apollo-server'
-import jwt from 'jsonwebtoken'
-import { models } from './db'
+const { AuthenticationError } = require('apollo-server')
+const jwt = require('jsonwebtoken')
+const { models } = require('./db')
 
 const secret = 'catpack'
 
@@ -9,15 +9,15 @@ const secret = 'catpack'
  * using user.id and user.role
  * @param {Object} user the user to create a jwt for
  */
-export const createToken = ({ id, role }) => jwt.sign({ id, role }, secret)
+exports.createToken = ({ id, role }) => jwt.sign({ id, role }, secret)
 
 /**
  * will attempt to verify a jwt and find a user in the
  * db associated with it. Catches any error and returns
  * a null user
- * @param {String} token jwt from client
+ * @param {String} token jwt = require(client
  */
-export const getUserFromToken = token => {
+exports.getUserFromToken = token => {
   try {
     const user = jwt.verify(token, secret)
     return models.User.findOne({ id: user.id })
@@ -31,7 +31,7 @@ export const getUserFromToken = token => {
  * continues to the next resolver if true
  * @param {Function} next next resolver function to run
  */
-export const authenticated = next => (root, args, context, info) => {
+exports.authenticated = next => (root, args, context, info) => {
   if (!context.user) {
     throw new AuthenticationError('not authorized')
   }
@@ -45,7 +45,7 @@ export const authenticated = next => (root, args, context, info) => {
  * @param {String} role enum role to check for
  * @param {Function} next next resolver function to run
  */
-export const authorized = (role, next) => (root, args, context, info) => {
+exports.authorized = (role, next) => (root, args, context, info) => {
   if (context.user.role !== role) {
     throw new AuthenticationError(`Must be a ${role}`)
   }

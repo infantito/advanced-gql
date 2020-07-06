@@ -1,3 +1,3 @@
-import dfnsFormat from 'date-fns/format'
+const dfnsFormat = require('date-fns/format')
 
-export const formatDate = (stamp, format) => dfnsFormat(stamp, format)
+exports.formatDate = (stamp, format) => dfnsFormat(stamp, format)
