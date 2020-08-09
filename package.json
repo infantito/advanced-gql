@@ -2,7 +2,7 @@
   "name": "adv-gqlv2",
   "version": "1.0.0",
   "main": "index.js",
-  "author": "Scott Moss <willscottmoss@gmail.com>",
+  "author": "Daniel Infante <danielinfantito61@gmail.com>",
   "license": "MIT",
   "scripts": {
     "server": "babel-node --config-file ./.babelrc src/index.js",
