@@ -29,7 +29,7 @@
     "date-fns": "^2.5.0",
     "jsonwebtoken": "^8.5.1",
     "lowdb": "^1.0.0",
-    "nanoid": "^3.1.9"
+    "nanoid": "^3.1.31"
   },
   "nodemonConfig": {
     "verbose": true,
